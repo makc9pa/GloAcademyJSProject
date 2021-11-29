@@ -1,19 +1,19 @@
-let title = 'Корпоративный портал в дополненную реальность';
-let screens = 'Простые, Сложные, Интерактивные';
-let screenPrice = 969;
-let rollback = 14;
-let fullPrice = 10005005;
-let adaptive = true;
+const TITLE = 'Корпоративный портал в дополненную реальность';
+const SCREENS = 'Простые, Сложные, Интерактивные';
+const SCREENPRICE = 969;
+const ROLLBACK = 14;
+const FULLPRICE = 10005005;
+const ADAPTIVE = true;
 
-console.log(typeof title);
-console.log(typeof fullPrice);
-console.log(typeof adaptive);
+console.log(typeof TITLE);
+console.log(typeof FULLPRICE);
+console.log(typeof ADAPTIVE);
 
-console.log(screens.length);
+console.log(SCREENS.length);
 
-console.log(`Стоимость верстки экранов ${screenPrice} рублей/долларов/гривен/юани`);
-console.log(`Стоимость разработки сайта ${fullPrice} рублей/долларов/гривен/юани`);
+console.log(`Стоимость верстки экранов ${SCREENPRICE} долларов`);
+console.log(`Стоимость разработки сайта ${FULLPRICE} юани`);
 
-console.log(screens.toLowerCase().split(', '));
+console.log(SCREENS.toLowerCase().split(', '));
 
-console.log(Math.trunc(fullPrice * (rollback/100))); 
+console.log(Math.trunc(FULLPRICE * (ROLLBACK / 100)));
