@@ -1,19 +1,36 @@
-const TITLE = 'Корпоративный портал в дополненную реальность';
-const SCREENS = 'Простые, Сложные, Интерактивные';
-const SCREENPRICE = 969;
-const ROLLBACK = 14;
-const FULLPRICE = 10005005;
-const ADAPTIVE = true;
+'use strict';
 
-console.log(typeof TITLE);
-console.log(typeof FULLPRICE);
-console.log(typeof ADAPTIVE);
+const ROLLBACK = 1000;
+let fullPrice = 0;
+let servicePercentPrice = 0;
 
-console.log(SCREENS.length);
+let title = prompt('Как называется ваш проект?');
+let screens = prompt('Какие типы экранов нужно разработать?');
+let screenPrice = +prompt('Сколько будет стоить данная работа?', '100');
+let adaptive = !!prompt('Нужен ли адаптив на сайте?', true);
+let service1 = prompt('Какой дополнительный тип услуги нужен?');
+let servicePrice1 = +prompt('Сколько это будет стоить?', '100');
+let service2 = prompt('Какой дополнительный тип услуги нужен?');
+let servicePrice2 = +prompt('Сколько это будет стоить?', '100');
 
-console.log(`Стоимость верстки экранов ${SCREENPRICE} долларов`);
-console.log(`Стоимость разработки сайта ${FULLPRICE} юани`);
+fullPrice = screenPrice + servicePrice1 + servicePrice2;
 
-console.log(SCREENS.toLowerCase().split(', '));
+switch (true) {
+    case fullPrice >= 30000:
+        fullPrice *= 0.9;
+        console.log('Даем скидку в 10%');
+        break;
+    case 30000 > fullPrice && fullPrice >= 15000:
+        fullPrice *= 0.95;
+        console.log('Даем скидку в 5%');
+        break;
+    case 15000 > fullPrice && fullPrice > 0:
+        console.log('Скидка не предусмотрена');
+        break;
+    default:
+        console.log('Что то пошло не так');
+}
 
-console.log(Math.trunc(FULLPRICE * (ROLLBACK / 100)));
+servicePercentPrice = Math.ceil(fullPrice - ROLLBACK);
+
+console.log(servicePercentPrice);
