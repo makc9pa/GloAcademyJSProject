@@ -1,15 +1,15 @@
-const arr = [
+const arr = new Map([
     ['ru', 'Пон Вт Ср Чт Пт Сб Вс'],
     ['en', 'Mon Tue Wen Thu Fri Sat Sun'],
-  ];
+  ]);
 
-let lang = 'ru';
+let lang = 'en';
 
 // первый метод через if
 if (lang === 'ru') {
-    console.log(arr[0][1]);
+    console.log(arr.get('ru'));
 } else if (lang === 'en') {
-    console.log(arr[1][1])
+    console.log(arr.get('en'))
 } else {
     console.log(' Что-то другое');
 }
@@ -17,19 +17,14 @@ if (lang === 'ru') {
 // второй метод через switch-case
 switch (lang) {
     case 'ru':
-        console.log(arr[0][1]);
+        console.log(arr.get('ru'));
         break;
     case 'en':
-        console.log(arr[1][1]);
+        console.log(arr.get('en'));
         break;
     default:
         console.log('Что-то другое')
 }
 
 // третий метод через многомерный массив
-const arr1 = new Map([
-    ['ru', 'Пон Вт Ср Чт Пт Сб Вс'],
-    ['en', 'Mon Tue Wen Thu Fri Sat Sun'],
-  ]);
-
-console.log(arr1.get(lang));
+console.log(arr.get(lang));
