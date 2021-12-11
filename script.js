@@ -3,26 +3,27 @@
 let secretNumber = Math.round(Math.random() * 10)
 let num
 let count = 10
-let confirmStatus
 
 const isIntegerNumber = function (num) {
     return !isNaN(parseFloat(num)) && isFinite(num) && (num % 1 === 0)
 }
 
-function inputNumber () {
-
-    if (count === 0) {
-        confirmStatus = confirm('Попытки закончились, хотите сыграть еще?')
+const playAgaing = function (confirmStatus) {
+    if (!confirmStatus) {
+        alert('Игра окончена')
     }
-
     if (confirmStatus) {
         count = 10
         secretNumber = Math.round(Math.random() * 100)
         inputNumber()
     }
+}
 
-    if (!confirmStatus) {
-        alert('Игра окончена')
+function inputNumber () {
+
+    if (count === 0) {
+        let confirmStatus = confirm('Попытки закончились, хотите сыграть еще?')  
+        playAgaing(confirmStatus)
     }
 
     num = prompt('Введи число')
@@ -47,20 +48,10 @@ function inputNumber () {
     } 
 
     if (num === secretNumber) {
-        confirmStatus = confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?')
+        let confirmStatus = confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?')
+        playAgaing(confirmStatus)
         console.log(secretNumber)
     }
-
-    if (confirmStatus) {
-        count = 10
-        secretNumber = Math.round(Math.random() * 100)
-        inputNumber()
-    }
-
-    if (!confirmStatus) {
-        alert('Игра окончена')
-    }
-
 }
 
 alert('Угадай загаданное число от 1 до 100')
