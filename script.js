@@ -14,10 +14,10 @@ const appData = {
     start: function () {
         appData.asking()
         appData.isNumber()
-        appData.allServicePrices = appData.getAllServicePrices()
-        appData.fullPrice = appData.getFullPrice()
-        appData.title = appData.getTitle()
-        appData.servicePercentPrice = appData.getServicePercentPrices()
+        appData.getAllServicePrices()
+        appData.getFullPrice()
+        appData.getTitle()
+        appData.getServicePercentPrices()
         appData.getRollbackMessage()
         appData.logger()
     },
@@ -54,17 +54,17 @@ const appData = {
     
             sum += +price
         }
-            return sum
+        appData.allServicePrices = sum
     },
     getFullPrice: function () {
-        return appData.screenPrice + appData.allServicePrices;
+        appData.fullPrice = appData.screenPrice + appData.allServicePrices;
     }, 
     getTitle: function () {
         appData.title = appData.title.trim().toLowerCase();
-        return appData.title[0].toUpperCase() + appData.title.substring(1);
+        appData.title = appData.title[0].toUpperCase() + appData.title.substring(1);
     },
     getServicePercentPrices: function () {
-        return appData.fullPrice - (appData.fullPrice * (appData.rollBack / 100))
+        appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollBack / 100))
     },
     getRollbackMessage: function (price) {
         switch (true) {
