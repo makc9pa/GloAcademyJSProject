@@ -21,38 +21,72 @@ const playAgaing = function (confirmStatus) {
 
 function inputNumber () {
 
-    if (count === 0) {
-        let confirmStatus = confirm('Попытки закончились, хотите сыграть еще?')  
-        playAgaing(confirmStatus)
-    }
-
     num = prompt('Введи число')
 
-    if (num === null) {
-        alert('Игра окончена')
-    } 
+    num = num.trim();
+    !isIntegerNumber(num) ? inputNumber() : num = +num;
 
-    num = num.trim()
-    !isIntegerNumber(num) ? inputNumber() : num = +num
+    switch (true) {
+        case num === null:
+        alert('Игра окончена');
+        break;
 
-    if (num > secretNumber) {
-        count--
-        alert(`Загаданное число меньше, осталось попыток: ${count}`)
-        inputNumber()
-    } 
+        case (num > secretNumber):
+            count--;
+            alert(`Загаданное число меньше, осталось попыток: ${count}`);
+            inputNumber();
+            break;
 
-    if (num < secretNumber) {
-        count--
-        alert(`Загаданное число больше, осталось попыток: ${count}`)
-        inputNumber() 
-    } 
+        case (num < secretNumber):
+            count--;
+            alert(`Загаданное число больше, осталось попыток: ${count}`);
+            inputNumber();
+            break;
 
-    if (num === secretNumber) {
-        let confirmStatus = confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?')
-        playAgaing(confirmStatus)
-        console.log(secretNumber)
-    }
+        case (num === secretNumber):
+            let confirmStatus = confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?')
+            playAgaing(confirmStatus)
+            console.log(secretNumber)
+            break;
+
+        default:
+                alert('Что')
+        }
 }
+
+
+    // if (count === 0) {
+    //     let confirmStatus = confirm('Попытки закончились, хотите сыграть еще?')  
+    //     playAgaing(confirmStatus)
+    // }
+
+    // num = prompt('Введи число')
+
+    // if (num === null) {
+    //     alert('Игра окончена')
+    // } 
+
+    // num = num.trim()
+    // !isIntegerNumber(num) ? inputNumber() : num = +num
+
+    // if (num > secretNumber) {
+    //     count--
+    //     alert(`Загаданное число меньше, осталось попыток: ${count}`)
+    //     inputNumber()
+    // } 
+
+    // if (num < secretNumber) {
+    //     count--
+    //     alert(`Загаданное число больше, осталось попыток: ${count}`)
+    //     inputNumber() 
+    // } 
+
+    // if (num === secretNumber) {
+    //     let confirmStatus = confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?')
+    //     playAgaing(confirmStatus)
+    //     console.log(secretNumber)
+    // }
+// }
 
 alert('Угадай загаданное число от 1 до 100')
 inputNumber()
