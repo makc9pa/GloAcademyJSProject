@@ -2,19 +2,18 @@
 
 const appData = {
     title: '',
-    screens: '',
+    screens: [],
     screenPrice: 0,
     adaptive: true,
-    service1: '',
-    service2: '',
+    services: {},
     rollBack: 10,
     allServicePrices: 0,
     fullPrice: 0,
     servicePercentPrice: 0,
     start: function () {
         appData.asking()
+        appData.addPrices()
         appData.isNumber()
-        appData.getAllServicePrices()
         appData.getFullPrice()
         appData.getTitle()
         appData.getServicePercentPrices()
@@ -23,41 +22,47 @@ const appData = {
     },
     asking: function () {
         appData.title = prompt('Как называется ваш проект?', 'Калькулятор верстки')
-        appData.screens = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные')
-        do {
-            appData.screenPrice = prompt('Сколько будет стоить данная работа?', '10000').trim()
-        } while (!appData.isNumber(appData.screenPrice))
-        
-        appData.screenPrice = +appData.screenPrice
-    
-        appData.adaptive = confirm('Нужен ли адаптив на сайте?')
-    
-    },
-    isNumber: function (num) {
-        return !isNaN(parseFloat(num)) && isFinite(num)
-    },
-    getAllServicePrices: function () {
-        let sum = 0
-    
+
         for (let i = 0; i < 2; i++) {
+            let name = prompt('Какие типы экранов нужно разработать?')
             let price = 0
-    
-            if (i === 0) {
-                appData.service1 = prompt('Какой дополнительный тип услуги нужен?', 'Повышенная доступность для людей с ограничениями')
-            } else if (i === 1) {
-                appData.service2 = prompt('Какой дополнительный тип услуги нужен?', 'Поддержка английского языка')
-            }
+
+            do {
+                price = prompt('Сколько будет стоить данная работа?').trim()
+            } while (!appData.isNumber(price))
+
+            appData.screens.push({ id: i, name: name, price: price })
+        }
+
+        for (let i = 0; i < 2; i++) {
+            let name = prompt('Какой дополнительный тип услуги нужен?')
+            let price = 0
     
             do {
                 price = prompt('Сколько это будет стоить?').trim()
             } while(!appData.isNumber(price))
-    
-            sum += +price
+
+            appData.services[name] = +price
         }
-        appData.allServicePrices = sum
+    
+        appData.adaptive = confirm('Нужен ли адаптив на сайте?')
+    
     },
+    addPrices: function () {
+        for (let screen of appData.screens) {
+            appData.screenPrice += +screen.price
+        }
+
+        for (let key in appData.services) {
+            appData.allServicePrices += appData.services[key]
+        }
+    },
+    isNumber: function (num) {
+        return !isNaN(parseFloat(num)) && isFinite(num)
+    },
+    
     getFullPrice: function () {
-        appData.fullPrice = appData.screenPrice + appData.allServicePrices;
+        appData.fullPrice = +appData.screenPrice + appData.allServicePrices;
     }, 
     getTitle: function () {
         appData.title = appData.title.trim().toLowerCase();
@@ -83,10 +88,7 @@ const appData = {
     logger: function () {
         console.log(appData.fullPrice)
         console.log(appData.servicePercentPrice)
-        console.log(appData.getRollbackMessage(appData.fullPrice))
-        for (let key in appData) {
-            console.log(key, appData[key])
-        }
+        console.log(appData.screens)
     }
 }
 
