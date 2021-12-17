@@ -21,12 +21,18 @@ const appData = {
         appData.logger()
     },
     asking: function () {
-        appData.title = prompt('Как называется ваш проект?', 'Калькулятор верстки')
+        do {
+            appData.title = prompt('Как называется ваш проект?', 'Калькулятор верстки')
+        } while (appData.isNumber(appData.title))
 
         for (let i = 0; i < 2; i++) {
-            let name = prompt('Какие типы экранов нужно разработать?')
+            
+            let name 
+            do {
+                name = prompt('Какие типы экранов нужно разработать?')
+            } while (appData.isNumber(name))
+            
             let price = 0
-
             do {
                 price = prompt('Сколько будет стоить данная работа?').trim()
             } while (!appData.isNumber(price))
@@ -35,26 +41,28 @@ const appData = {
         }
 
         for (let i = 0; i < 2; i++) {
-            let name = prompt('Какой дополнительный тип услуги нужен?')
+            let name
+            do {
+                name = prompt('Какой дополнительный тип услуги нужен?')
+            } while (appData.isNumber(name))
+
             let price = 0
     
             do {
                 price = prompt('Сколько это будет стоить?').trim()
             } while(!appData.isNumber(price))
-
-            appData.services[name] = +price
+            let id = i
+            appData.services[id] = {name, price}
         }
     
         appData.adaptive = confirm('Нужен ли адаптив на сайте?')
     
     },
     addPrices: function () {
-        for (let screen of appData.screens) {
-            appData.screenPrice += +screen.price
-        }
+        appData.screenPrice = appData.screens.reduce((acc, obj) => {return acc + (+obj.price)}, 0)
 
-        for (let key in appData.services) {
-            appData.allServicePrices += appData.services[key]
+        for (let id in appData.services) {
+            appData.allServicePrices += +appData.services[id].price
         }
     },
     isNumber: function (num) {
@@ -62,7 +70,7 @@ const appData = {
     },
     
     getFullPrice: function () {
-        appData.fullPrice = +appData.screenPrice + appData.allServicePrices;
+        appData.fullPrice = appData.screenPrice + appData.allServicePrices;
     }, 
     getTitle: function () {
         appData.title = appData.title.trim().toLowerCase();
@@ -86,9 +94,11 @@ const appData = {
         }
     },
     logger: function () {
+        console.log(appData.title)
         console.log(appData.fullPrice)
         console.log(appData.servicePercentPrice)
         console.log(appData.screens)
+        console.log(appData.services)
     }
 }
 
