@@ -1,12 +1,20 @@
 'use strict';
 
+let screenTotal = document.querySelectorAll('.screen > .main-controls__select > select > option')
+
 const appData = {
-    title: '',
+    title: document.getElementsByTagName('h1')[0],
+    handlerBtn: document.getElementsByClassName('handler_btn'),
+    screenBtn: document.querySelector('.screen-btn'),
+    otherItemsPercent: document.querySelectorAll('.other-items.percent'),
+    otherItemsNumber: document.querySelectorAll('.other-items.number'),
+    span: document.querySelector('.rollback > .main-controls__range > .range-value'),
+    totalInput: Array.from(document.getElementsByClassName('total-input')),
     screens: [],
     screenPrice: 0,
     adaptive: true,
     services: {},
-    rollBack: 10,
+    rollBack: document.querySelector('.rollback > .main-controls__range > input'),
     allServicePrices: 0,
     fullPrice: 0,
     servicePercentPrice: 0,
@@ -102,4 +110,14 @@ const appData = {
     }
 }
 
-appData.start()
+console.log(appData.title)
+console.log(appData.handlerBtn)
+console.log(appData.screenBtn)
+console.log(appData.otherItemsPercent)
+console.log(appData.otherItemsNumber)
+console.log(appData.rollBack)
+console.log(appData.span)
+console.log(appData.totalInput)
+console.log(screenTotal)
+
+// appData.start()
