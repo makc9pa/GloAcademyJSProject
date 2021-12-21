@@ -1,20 +1,26 @@
 'use strict';
 
+const title = document.getElementsByTagName('h1')[0]
+const handlerBtnStart = document.getElementsByClassName('handler_btn')[0]
+const handlerBtnReset = document.getElementsByClassName('handler_btn')[1]
+const screenBtn = document.querySelector('.screen-btn')
+const otherItemsPercent = document.querySelectorAll('.other-items.percent')
+const otherItemsNumber = document.querySelectorAll('.other-items.number')
+const span = document.querySelector('.rollback > .main-controls__range > .range-value')
+const totalInputPrice = document.getElementsByClassName('total-input')[0]
+const totalInputScreens = document.getElementsByClassName('total-input')[1]
+const totalInputPriceAdditional = document.getElementsByClassName('total-input')[2]
+const totalInputPriceAll = document.getElementsByClassName('total-input')[3]
+const totalInputPriceRollback = document.getElementsByClassName('total-input')[4]
+const rollBack = document.querySelector('.rollback > .main-controls__range > input')
 let screenTotal = document.querySelectorAll('.screen > .main-controls__select > select > option')
 
 const appData = {
-    title: document.getElementsByTagName('h1')[0],
-    handlerBtn: document.getElementsByClassName('handler_btn'),
-    screenBtn: document.querySelector('.screen-btn'),
-    otherItemsPercent: document.querySelectorAll('.other-items.percent'),
-    otherItemsNumber: document.querySelectorAll('.other-items.number'),
-    span: document.querySelector('.rollback > .main-controls__range > .range-value'),
-    totalInput: Array.from(document.getElementsByClassName('total-input')),
+    title: '',
     screens: [],
     screenPrice: 0,
     adaptive: true,
     services: {},
-    rollBack: document.querySelector('.rollback > .main-controls__range > input'),
     allServicePrices: 0,
     fullPrice: 0,
     servicePercentPrice: 0,
@@ -110,14 +116,19 @@ const appData = {
     }
 }
 
-console.log(appData.title)
-console.log(appData.handlerBtn)
-console.log(appData.screenBtn)
-console.log(appData.otherItemsPercent)
-console.log(appData.otherItemsNumber)
-console.log(appData.rollBack)
-console.log(appData.span)
-console.log(appData.totalInput)
+console.log(title)
+console.log(handlerBtnStart)
+console.log(handlerBtnReset)
+console.log(screenBtn)
+console.log(otherItemsPercent)
+console.log(otherItemsNumber)
+console.log(rollBack)
+console.log(span)
+console.log(totalInputPrice)
+console.log(totalInputScreens)
+console.log(totalInputPriceAdditional)
+console.log(totalInputPriceAll)
+console.log(totalInputPriceRollback)
 console.log(screenTotal)
 
 // appData.start()
