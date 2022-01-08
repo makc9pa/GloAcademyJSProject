@@ -160,7 +160,7 @@ const appData = {
             const select = screen.querySelector('select')
             const input = screen.querySelector('input')
             const selectName = select.options[select.selectedIndex].textContent
-            appData.screens.push({ 
+            this.screens.push({ 
                 id: index, 
                 name: selectName, 
                 count: +input.value,
