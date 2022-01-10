@@ -36,27 +36,27 @@ const appData = {
     isError: false,
     init: function () {
         this.addTitle();
-        handlerBtnStart.addEventListener('click', this.start.bind(appData));
+        handlerBtnStart.addEventListener('click', this.start.bind(this));
         screenBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            this.checkValues.apply(appData);
+            this.checkValues.apply(this);
         })
-        rollBackInput.addEventListener('input', this.rollBackChanger.bind(appData));
-        handlerBtnReset.addEventListener('click', this.reset.bind(appData));
+        rollBackInput.addEventListener('input', this.rollBackChanger.bind(this));
+        handlerBtnReset.addEventListener('click', this.reset.bind(this));
     },
     start: function () {
-        this.addScreens.apply(appData)
-        this.addServices.apply(appData)
-        this.addPrices.apply(appData)
-        // appData.logger.bind(appData)
-        this.showResult.apply(appData)
+        this.addScreens.apply(this)
+        this.addServices.apply(this)
+        this.addPrices.apply(this)
+        // this.logger.bind(this)
+        this.showResult.apply(this)
     },
     reset: function () {
-        this.resetScreens.apply(appData)
-        this.resetBtn.apply(appData)
-        this.resetRollBack.apply(appData)
-        this.resetServices.apply(appData)
-        this.resetTotalInputs.apply(appData)
+        this.resetScreens.apply(this)
+        this.resetBtn.apply(this)
+        this.resetRollBack.apply(this)
+        this.resetServices.apply(this)
+        this.resetTotalInputs.apply(this)
     },
     resetTotalInputs: function () {
         totalInputPrice.value = 0
